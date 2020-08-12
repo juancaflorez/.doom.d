@@ -19,10 +19,10 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Roboto Mono" :size 16))
-(setq doom-big-font (font-spec :family "Roboto Mono" :size 24))
-(setq doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 16))
-(setq doom-unicode-font (font-spec :family "Roboto Mono" :size 16))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 20))
+(setq doom-big-font (font-spec :family "JetBrains Mono" :size 28))
+(setq doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 20))
+(setq doom-unicode-font (font-spec :family "JetBrains Mono" :size 20))
 
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -63,18 +63,21 @@
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
 
+;; This will start emacs maximized
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+
+;; Latex stuff
+
+(setq org-latex-pdf-process
+      '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
+
 ;; Packages configuration
 (use-package! treemacs
   :ensure t
   :config
   (treemacs-follow-mode t)
-  (treemacs-filewatch-mode t)
-
-  (setq treemacs-follow-after-init t
-        treemacs-is-never-other-window t
-        treemacs-sorting 'alphabetic-case-insensitive-asc
-        treemacs-persist-file (concat doom-cache-dir "treemacs-persist")))
+  (treemacs-filewatch-mode t))
 
 ;;Bindings
-(map! :leader
-      :desc "Open Treemacs" "0" #'treemacs)
+;;(map! :leader
+;;      :desc "Open Treemacs" "0" #'treemacs)
