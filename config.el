@@ -36,9 +36,6 @@
 (setq org-roam-directory "~/Org/zettelkasten")
 (setq org-archive-location '(concat org-directory "/archive.org"))
 (setq org-default-notes-file '(concat org-directory "/notes.org"))
-(after! org-ref
-  (setq org-ref-default-bibliography '("~/Org/biblio/references.bib"))
-  (setq bibtex-completion-bibliography '("~/Org/biblio/references.bib")))
 
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -66,6 +63,14 @@
 ;; This will start emacs maximized
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
+;; Org ref
+(require 'org-ref)
+(after! org-ref
+  (setq org-ref-default-bibliography '("~/Org/biblio/references.bib"))
+  (setq bibtex-completion-bibliography '("~/Org/biblio/references.bib")))
+
+
+
 ;; Latex stuff
 
 (setq org-latex-pdf-process
@@ -78,6 +83,58 @@
   (treemacs-follow-mode t)
   (treemacs-filewatch-mode t))
 
+;; Encryption
+(require 'epa-file)
+(epa-file-enable)
+
+;; Ligatures
+;; removed "***" because it crashes .org headings
+(defconst jetbrains-ligature-mode--ligatures
+   '("-->" "//" "/**" "/*" "*/" "<!--" ":=" "->>" "<<-" "->" "<-"
+     "<=>" "==" "!=" "<=" ">=" "=:=" "!==" "&&" "||" "..." ".."
+     "|||" "///" "&&&" "===" "++" "--" "=>" "|>" "<|" "||>" "<||"
+     "|||>" "<|||" ">>" "<<" "::=" "|]" "[|" "{|" "|}"
+     "[<" ">]" ":?>" ":?" "/=" "[||]" "!!" "?:" "?." "::"
+     "+++" "??" "###" "##" ":::" "####" ".?" "?=" "=!=" "<|>"
+     "<:" ":<" ":>" ">:" "<>"  ";;" "/==" ".=" ".-" "__"
+     "=/=" "<-<" "<<<" ">>>" "<=<" "<<=" "<==" "<==>" "==>" "=>>"
+     ">=>" ">>=" ">>-" ">-" "<~>" "-<" "-<<" "=<<" "---" "<-|"
+     "<=|" "/\\" "\\/" "|=>" "|~>" "<~~" "<~" "~~" "~~>" "~>"
+     "<$>" "<$" "$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</>" "</" "/>"
+     "<->" "..<" "~=" "~-" "-~" "~@" "^=" "-|" "_|_" "|-" "||-"
+     "|=" "||=" "#{" "#[" "]#" "#(" "#?" "#_" "#_(" "#:" "#!" "#="
+     "&="))
+
+(dolist (pat jetbrains-ligature-mode--ligatures)
+  (set-char-table-range composition-function-table
+                      (aref pat 0)
+                      (nconc (char-table-range composition-function-table (aref pat 0))
+                             (list (vector (regexp-quote pat)
+                                           0
+                                    'compose-gstring-for-graphic)))))
+
+
 ;;Bindings
 ;;(map! :leader
 ;;      :desc "Open Treemacs" "0" #'treemacs)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(sqlite3 emacsql-sqlite3 treemacs)))
+(custom-set-faces!
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(font-lock-comment-face :slant italic)
+ '(font-lock-keyword-face :slant italic)
+ )
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(font-lock-comment-face ((t (:slant italic))))
+ '(font-lock-keyword-face ((t (:slant italic)))))
