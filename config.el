@@ -19,11 +19,18 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "JetBrains Mono" :size 20))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 20 :weight 'semi-light))
 (setq doom-big-font (font-spec :family "JetBrains Mono" :size 28))
 (setq doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 20))
 (setq doom-unicode-font (font-spec :family "JetBrains Mono" :size 20))
 
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :slant italic))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -36,7 +43,7 @@
 (setq org-roam-directory "~/Org/zettelkasten")
 (setq org-archive-location '(concat org-directory "/archive.org"))
 (setq org-default-notes-file '(concat org-directory "/notes.org"))
-
+(setq org-hide-emphasis-markers t)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -89,8 +96,9 @@
 
 ;; Ligatures
 ;; removed "***" because it crashes .org headings
+;; removed /* /** because interferes with .org syntax
 (defconst jetbrains-ligature-mode--ligatures
-   '("-->" "//" "/**" "/*" "*/" "<!--" ":=" "->>" "<<-" "->" "<-"
+   '("-->" "//" "<!--" ":=" "->>" "<<-" "->" "<-"
      "<=>" "==" "!=" "<=" ">=" "=:=" "!==" "&&" "||" "..." ".."
      "|||" "///" "&&&" "===" "++" "--" "=>" "|>" "<|" "||>" "<||"
      "|||>" "<|||" ">>" "<<" "::=" "|]" "[|" "{|" "|}"
@@ -114,6 +122,12 @@
                                     'compose-gstring-for-graphic)))))
 
 
+
+;; Custom quit messages
+(setq +doom-quit-messages '("Hora de morder a maria paula"
+                            "Por que?"
+                            "Ummm...."))
+
 ;;Bindings
 ;;(map! :leader
 ;;      :desc "Open Treemacs" "0" #'treemacs)
@@ -123,18 +137,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages '(sqlite3 emacsql-sqlite3 treemacs)))
-(custom-set-faces!
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(font-lock-comment-face :slant italic)
- '(font-lock-keyword-face :slant italic)
- )
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:slant italic))))
- '(font-lock-keyword-face ((t (:slant italic)))))
