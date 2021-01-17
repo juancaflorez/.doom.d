@@ -19,10 +19,10 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "JetBrains Mono" :size 20 :weight 'semi-light))
-(setq doom-big-font (font-spec :family "JetBrains Mono" :size 28))
-(setq doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 20))
-(setq doom-unicode-font (font-spec :family "JetBrains Mono" :size 20))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 20 :weight 'semi-light))
+(setq doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 28))
+(setq doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
+(setq doom-unicode-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
 
 (after! doom-themes
   (setq doom-themes-enable-bold t
@@ -145,6 +145,12 @@
            :heading "Changelog"
            :prepend t))))
 
+;; org bullets
+(setq
+    org-superstar-headline-bullets-list '("◉" "✿" "" "" "" "")
+)
+
+
 ;; Ligatures
 ;; removed "***" because it crashes .org headings
 ;; removed /* /** because interferes with .org syntax
@@ -172,6 +178,8 @@
                                            0
                                     'compose-gstring-for-graphic)))))
 
+;;Dictionary
+(setq ispell-dictionary "en")
 
 
 ;; Custom quit messages
