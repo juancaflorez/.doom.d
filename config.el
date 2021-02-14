@@ -94,12 +94,17 @@
 (require 'epa-file)
 (epa-file-enable)
 
-
+;; Presentations, org tree slide
+(after! org-tree-slide
+  (setq org-tree-slide-skip-outline-level 0))
 
 ;; Capture
 (after! org
   (setq org-capture-templates
         '(("t" "Personal todo" entry
+           (file+headline +org-capture-todo-file "Inbox")
+           "* [ ] %?\n%i\n" :prepend t)
+          ("t" "Personal todo - in context" entry
            (file+headline +org-capture-todo-file "Inbox")
            "* [ ] %?\n%i\n%a" :prepend t)
           ("n" "Personal notes" entry
