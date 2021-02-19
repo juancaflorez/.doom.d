@@ -148,7 +148,11 @@
            (function +org-capture-central-project-changelog-file)
            "* %U %?\n %i\n %a"
            :heading "Changelog"
-           :prepend t))))
+           :prepend t)))
+
+  ;; relative links for org
+  (setq org-link-file-path-type 'relative)
+)
 
 ;; org bullets
 (setq
