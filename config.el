@@ -98,6 +98,14 @@
 (after! org-tree-slide
   (setq org-tree-slide-skip-outline-level 0))
 
+;; PDF Viewer settings
+(use-package pdf-view
+  :hook (pdf-tools-enabled . pdf-view-midnight-minor-mode)
+  :hook (pdf-tools-enabled . hide-mode-line-mode)
+  :config
+  (setq pdf-view-midnight-colors '("#ABB2BF" . "#282C35")))
+
+
 ;; Capture
 (after! org
   (setq org-capture-templates
