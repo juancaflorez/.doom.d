@@ -213,3 +213,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages '(sqlite3 emacsql-sqlite3 treemacs)))
+ 
+(map! :leader
+      :desc "Centered mode"
+      "t c" #'centered-window-mode)
