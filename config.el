@@ -19,7 +19,7 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 20 :weight 'semi-light))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
 (setq doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 28))
 (setq doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
 (setq doom-unicode-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
@@ -164,7 +164,7 @@
 
 ;; org bullets
 (setq
-    org-superstar-headline-bullets-list '("◉" "✿" "" "" "" "")
+    org-superstar-headline-bullets-list '("⬢" "✿" "" "" "" "")
 )
 
 
