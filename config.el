@@ -3,6 +3,8 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+;; To use daemon mode without loading everything at the begining
+(setq doom-incremental-load-immediately nil)
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -160,6 +162,9 @@
 
   ;; relative links for org
   (setq org-link-file-path-type 'relative)
+  (setq org-todo-keyword-faces '(("TODO" . (:foreground "#99bb66" :weight bold))
+                               ("PROJECTED" . (:foreground "#44b9b1" :weight bold))
+                               ("STARTED" . (:foreground "#51afef" :weight bold))))
 )
 
 ;; org bullets
@@ -217,3 +222,9 @@
 (map! :leader
       :desc "Centered mode"
       "t c" #'centered-window-mode)
+
+
+;; LSP
+;;
+;;(after! lsp-lua
+;;  (setq lsp-lua-workspace-library (ht ("~/Source/PlaydateSDK/CoreLibs" t))))
