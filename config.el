@@ -4,7 +4,7 @@
 ;; sync' after modifying this file!
 
 ;; To use daemon mode without loading everything at the begining
-(setq doom-incremental-load-immediately nil)
+(setq doom-incremental-load-immediately t)
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -22,9 +22,9 @@
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
-(setq doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 28))
+(setq doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 26))
 (setq doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
-(setq doom-unicode-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
+(setq doom-unicode-font (font-spec :family "JuliaMono-Regular" :size 20))
 
 (after! doom-themes
   (setq doom-themes-enable-bold t
@@ -41,8 +41,8 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Org/")
-(setq org-roam-directory "~/Org/zettelkasten")
+(setq org-directory "~/org/")
+(setq org-roam-directory "~/org/zettelkasten")
 (setq org-archive-location '(concat org-directory "/archive.org"))
 (setq org-default-notes-file '(concat org-directory "/notes.org"))
 (setq org-hide-emphasis-markers t)
@@ -72,11 +72,11 @@
 ;; This will start emacs maximized
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
-;; Org ref
+;; org ref
 (require 'org-ref)
 (after! org-ref
-  (setq org-ref-default-bibliography '("~/Org/biblio/references.bib"))
-  (setq bibtex-completion-bibliography '("~/Org/biblio/references.bib")))
+  (setq org-ref-default-bibliography '("~/org/biblio/references.bib"))
+  (setq bibtex-completion-bibliography '("~/org/biblio/references.bib")))
 
 
 
@@ -163,42 +163,44 @@
   ;; relative links for org
   (setq org-link-file-path-type 'relative)
   (setq org-todo-keyword-faces '(("TODO" . (:foreground "#99bb66" :weight bold))
-                               ("PROJECTED" . (:foreground "#44b9b1" :weight bold))
-                               ("STARTED" . (:foreground "#51afef" :weight bold))))
+                                 ("STARTED" . (:foreground "#46D9FF" :weight bold))
+                                 ("FIXME" . (:foreground "#ff6655" :weight bold))
+                                 ("REFACTOR" . (:foreground "#a9a1e1" :weight bold))
+                                 ("HOLD" . (:foreground "#ECBE7B" :weight bold))
+                                 ("KILL" . (:foreground "#ff6655" :weight bold))))
 )
-
 ;; org bullets
 (setq
-    org-superstar-headline-bullets-list '("⬢" "✿" "" "" "" "")
+    org-superstar-headline-bullets-list '("◈" "◆" "" "" "" "")
 )
 
 
 ;; Ligatures
 ;; removed "***" because it crashes .org headings
 ;; removed /* /** because interferes with .org syntax
-(defconst jetbrains-ligature-mode--ligatures
-   '("-->" "//" "<!--" ":=" "->>" "<<-" "->" "<-"
-     "<=>" "==" "!=" "<=" ">=" "=:=" "!==" "&&" "||" "..." ".."
-     "|||" "///" "&&&" "===" "++" "--" "=>" "|>" "<|" "||>" "<||"
-     "|||>" "<|||" ">>" "<<" "::=" "|]" "[|" "{|" "|}"
-     "[<" ">]" ":?>" ":?" "/=" "[||]" "!!" "?:" "?." "::"
-     "+++" "??" "###" "##" ":::" "####" ".?" "?=" "=!=" "<|>"
-     "<:" ":<" ":>" ">:" "<>"  ";;" "/==" ".=" ".-" "__"
-     "=/=" "<-<" "<<<" ">>>" "<=<" "<<=" "<==" "<==>" "==>" "=>>"
-     ">=>" ">>=" ">>-" ">-" "<~>" "-<" "-<<" "=<<" "---" "<-|"
-     "<=|" "/\\" "\\/" "|=>" "|~>" "<~~" "<~" "~~" "~~>" "~>"
-     "<$>" "<$" "$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</>" "</" "/>"
-     "<->" "..<" "~=" "~-" "-~" "~@" "^=" "-|" "_|_" "|-" "||-"
-     "|=" "||=" "#{" "#[" "]#" "#(" "#?" "#_" "#_(" "#:" "#!" "#="
-     "&="))
+;; (defconst jetbrains-ligature-mode--ligatures
+;;    '("-->" "//" "<!--" ":=" "->>" "<<-" "->" "<-"
+;;      "<=>" "==" "!=" "<=" ">=" "=:=" "!==" "&&" "||"
+;;      "|||" "///" "&&&" "===" "++" "--" "=>" "|>" "<|" "||>" "<||"
+;;      "|||>" "<|||" ">>" "<<" "::=" "|]" "[|" "{|" "|}"
+;;      "[<" ">]" ":?>" ":?" "/=" "[||]" "!!" "?:" "?." "::"
+;;      "+++" "??" "###" "##" ":::" "####" ".?" "?=" "=!=" "<|>"
+;;      "<:" ":<" ":>" ">:" "<>"  ";;" "/==" ".=" ".-" "__"
+;;      "=/=" "<-<" "<<<" ">>>" "<=<" "<<=" "<==" "<==>" "==>" "=>>"
+;;      ">=>" ">>=" ">>-" ">-" "<~>" "-<" "-<<" "=<<" "---" "<-|"
+;;      "<=|" "/\\" "\\/" "|=>" "|~>" "<~~" "<~" "~~" "~~>" "~>"
+;;      "<$>" "<$" "$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</>" "</" "/>"
+;;      "<->" "..<" "~=" "~-" "-~" "~@" "^=" "-|" "_|_" "|-" "||-"
+;;      "|=" "||=" "#{" "#[" "]#" "#(" "#?" "#_" "#_(" "#:" "#!" "#="
+;;      "&="))
 
-(dolist (pat jetbrains-ligature-mode--ligatures)
-  (set-char-table-range composition-function-table
-                      (aref pat 0)
-                      (nconc (char-table-range composition-function-table (aref pat 0))
-                             (list (vector (regexp-quote pat)
-                                           0
-                                    'compose-gstring-for-graphic)))))
+;; (dolist (pat jetbrains-ligature-mode--ligatures)
+;;   (set-char-table-range composition-function-table
+;;                       (aref pat 0)
+;;                       (nconc (char-table-range composition-function-table (aref pat 0))
+;;                              (list (vector (regexp-quote pat)
+;;                                            0
+;;                                     'compose-gstring-for-graphic)))))
 
 ;;Dictionary
 (setq ispell-dictionary "en")

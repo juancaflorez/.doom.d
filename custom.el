@@ -4,8 +4,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
-   '("/home/juan/Org/project.org" "/home/juan/Org/todo.org" "/home/juan/Org/Work/desolation.org" "/home/juan/Org/games/disorder-proj.org" "/home/juan/Org/games/niebla-proj.org"))
- '(package-selected-packages '(pandoc-mode sqlite3 emacsql-sqlite3 treemacs)))
+   '("/home/juan/org/project.org" "/home/juan/org/todo.org" "/home/juan/org/Work/desolation.org" "/home/juan/org/games/disorder-proj.org" "/home/juan/org/games/niebla-proj.org"))
+ '(package-selected-packages '(pandoc-mode sqlite3 emacsql-sqlite3 treemacs))
+ '(warning-suppress-types '((emacs) (defvaralias))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
